@@ -1,9 +1,5 @@
-// ========================
-// SUPABASE CONFIG
-// Replace these two values after creating your Supabase project.
-// ========================
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://ljtugpmazxzdxpzhtlyd.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqdHVncG1henh6ZHhwemh0bHlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwMDUxMjIsImV4cCI6MjEwMjU4MTEyMn0.tk_Jk5g4Bay0Mq5ibJG9W0AeUcW3rrSnS4brGK8AXts';
 
 const isConfigured = () => SUPABASE_URL !== 'YOUR_SUPABASE_URL';
 
