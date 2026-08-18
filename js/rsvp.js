@@ -98,7 +98,8 @@ function getRadio(group) {
 function prefillForm(guest) {
   const greeting = el('rsvp-greeting');
   if (greeting) {
-    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span>${guest.name}</span> 👋`;
+    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span></span> 👋`;
+    greeting.querySelector('span').textContent = guest.name;
   }
   if (guest.email) el('rsvp-email').value = guest.email;
   if (guest.phone) el('rsvp-phone').value = guest.phone;
@@ -210,6 +211,12 @@ function initRsvpSubmit() {
     const attending = getRadio('attending');
     const plusOne = getRadio('plus_one');
 
+    if (attending === null) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = t('rsvp_submit');
+      return;
+    }
+
     const payload = {
       is_attending: attending === 'yes' ? true : attending === 'no' ? false : null,
       plus_one_confirmed: plusOne === 'yes' ? true : plusOne === 'no' ? false : null,
@@ -236,7 +243,8 @@ function initRsvpSubmit() {
 function updateRsvpLang() {
   const greeting = el('rsvp-greeting');
   if (greeting && guestData) {
-    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span>${guestData.name}</span> 👋`;
+    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span></span> 👋`;
+    greeting.querySelector('span').textContent = guestData.name;
   }
   const submitBtn = el('rsvp-submit-btn');
   if (submitBtn && !submitBtn.disabled) {
