@@ -755,6 +755,52 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .btn-back:hover { color: var(--text); }
 
+/* Extra guests list */
+.form-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.guest-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.guest-row .form-input { margin-bottom: 0; }
+.guest-remove-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.guest-remove-btn:hover { background: #fee2e2; color: #c33; border-color: #fca5a5; }
+.btn-add-guest {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--sage);
+  transition: opacity 0.2s;
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+.btn-add-guest:hover { opacity: 0.7; }
+.radio-group-col { flex-direction: column; }
+.radio-group-col .radio-opt { justify-content: flex-start; text-align: left; }
+
 /* Event selection cards */
 .event-cards-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .event-rsvp-card {
