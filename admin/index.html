@@ -557,10 +557,10 @@
   </div>
 </div>
 
-<script src="config.js" onerror="window.__configMissing=true"></script>
 <script>
   const SUPABASE_URL = 'https://ljtugpmazxzdxpzhtlyd.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqdHVncG1henh6ZHhwemh0bHlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwMDUxMjIsImV4cCI6MjEwMjU4MTEyMn0.tk_Jk5g4Bay0Mq5ibJG9W0AeUcW3rrSnS4brGK8AXts';
+  const ADMIN_PASSWORD = 'peluche';
 
   let guests = [];
   let currentFilter = 'all';
@@ -568,12 +568,8 @@
 
   // ===== AUTH =====
   function checkPassword() {
-    if (window.__configMissing || !window.ADMIN_PASSWORD) {
-      alert('Falta admin/config.js. Copiá config.example.js → config.js y establecé tu contraseña.');
-      return;
-    }
     const val = document.getElementById('gate-input').value;
-    if (val === window.ADMIN_PASSWORD) {
+    if (val === ADMIN_PASSWORD) {
       document.getElementById('gate').style.display = 'none';
       document.getElementById('app').classList.add('visible');
       loadGuests();
