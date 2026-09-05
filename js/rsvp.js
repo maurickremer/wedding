@@ -78,12 +78,12 @@ const RSVP_EVENTS = {
     {
       key: 'coors', icon: '🍺',
       titleEs: 'Coors Brewery Tour', titleEn: 'Coors Brewery Tour',
-      descEs: 'Lunes 22 · Denver · Costo aprox. $25 por persona', descEn: 'Monday March 22 · Denver · Approx. $25/person',
+      descEs: 'Lunes 22 · Denver · Costo aprox. $37 por persona', descEn: 'Monday March 22 · Denver · Approx. $37/person',
     },
     {
       key: 'avalanche', icon: '🏒',
       titleEs: 'Avalanche vs Mammoth', titleEn: 'Avalanche vs Mammoth',
-      descEs: 'Martes 23 · Denver · Costo aprox. $30–60 por persona', descEn: 'Tuesday March 23 · Denver · Approx. $30–60/person',
+      descEs: 'Martes 23 · Denver · Costo aprox. $65 por persona', descEn: 'Tuesday March 23 · Denver · Approx. $65/person',
     },
   ],
 };

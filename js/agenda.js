@@ -12,8 +12,8 @@ const AGENDA = [
       {
         type: "paid", icon: "🍺", rsvpKey: "coors",
         titleEs: "Coors Brewery Tour", titleEn: "Coors Brewery Tour",
-        descEs: "10am–4pm · $25 por persona · Reservar con anticipación para grupos",
-        descEn: "10am–4pm · $25/person · Book ahead for groups",
+        descEs: "10am–4pm · $37 por persona · Reservar con anticipación para grupos",
+        descEn: "10am–4pm · $37/person · Book ahead for groups",
         linkLabel: "avalanchetix.com/group-experiences",
         linkUrl: "https://www.avalanchetix.com/group-experiences",
       },
@@ -38,8 +38,8 @@ const AGENDA = [
       {
         type: "paid", icon: "🏒", rsvpKey: "avalanche",
         titleEs: "Avalanche vs Mammoth", titleEn: "Avalanche vs Mammoth",
-        descEs: "Partido grupal · Noche · Costo aprox. $30–60 por persona",
-        descEn: "Group game · Evening · Approx. $30–60/person",
+        descEs: "Partido grupal · Noche · Costo aprox. $65 por persona",
+        descEn: "Group game · Evening · Approx. $65/person",
         linkLabel: "avalanchetix.com/group-experiences",
         linkUrl: "https://www.avalanchetix.com/group-experiences",
       },
@@ -107,11 +107,6 @@ const AGENDA = [
         descEs: "1:30 PM – 3:30 PM", descEn: "1:30 PM – 3:30 PM",
         linkLabel: "leadvillerailroad.com",
         linkUrl: "https://leadvillerailroad.com/",
-      },
-      {
-        type: "suggested", icon: "💍",
-        titleEs: "Ensayo de la ceremonia", titleEn: "Wedding rehearsal",
-        descEs: "4:00 PM · Solo cortejo nupcial", descEn: "4:00 PM · Wedding party only",
       },
       {
         type: "included", icon: "🍷", rsvpKey: "cena_grupal",
