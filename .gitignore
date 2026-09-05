@@ -29,3 +29,5 @@ admin/config.js
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*
