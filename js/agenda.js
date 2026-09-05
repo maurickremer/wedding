@@ -19,8 +19,8 @@ const AGENDA = [
       },
       {
         type: "suggested", icon: "🍕",
-        titleEs: "Cena: Woody's Wood-Fired Pizza", titleEn: "Dinner: Woody's Wood-Fired Pizza",
-        descEs: "Golden, CO", descEn: "Golden, CO",
+        titleEs: "Cena grupal", titleEn: "Group dinner",
+        descEs: "Lugar a confirmar", descEn: "Venue TBD",
       },
     ],
   },
@@ -65,9 +65,8 @@ const AGENDA = [
       },
       {
         type: "suggested", icon: "🍽️",
-        titleEs: "Cena familiar: Tennessee Pass", titleEn: "Family dinner: Tennessee Pass",
-        linkLabel: "tennesseepass.com",
-        linkUrl: "https://www.tennesseepass.com/",
+        titleEs: "Cena grupal", titleEn: "Group dinner",
+        descEs: "Lugar a confirmar", descEn: "Venue TBD",
       },
     ],
   },
