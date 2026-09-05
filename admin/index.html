@@ -470,7 +470,7 @@
     <!-- URL BAR -->
     <div class="url-bar">
       <label>🔗 URL del sitio:</label>
-      <input type="text" id="site-url" value="https://sara-y-mauricio.com" placeholder="https://tu-dominio.com" oninput="saveSiteUrl()">
+      <input type="text" id="site-url" value="https://saramauri.vercel.app" placeholder="https://tu-dominio.com" oninput="saveSiteUrl()">
       <span class="url-hint">Actualizá esto cuando el sitio esté publicado</span>
     </div>
 
@@ -595,7 +595,7 @@
 
   // ===== SITE URL =====
   function getSiteUrl() {
-    return (document.getElementById('site-url').value || 'https://sara-y-mauricio.com').replace(/\/$/, '');
+    return (document.getElementById('site-url').value || 'https://saramauri.vercel.app').replace(/\/$/, '');
   }
 
   function saveSiteUrl() {
