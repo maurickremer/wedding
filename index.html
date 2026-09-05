@@ -287,7 +287,7 @@
           <div class="rsvp-state-icon">💙</div>
           <h3 data-i18n="rsvp_declined_title">Gracias por avisarnos</h3>
           <p data-i18n="rsvp_declined_msg">Lamentamos que no puedas venir. ¡Te vamos a extrañar!</p>
-          <button id="rsvp-edit-btn-dec" class="btn-edit" onclick="document.getElementById('rsvp-declined').classList.add('hidden'); document.getElementById('rsvp-form-wrap').classList.remove('hidden');" data-i18n="rsvp_edit">Editar mi respuesta</button>
+          <button id="rsvp-edit-btn-dec" class="btn-edit" onclick="showEditForm()" data-i18n="rsvp_edit">Editar mi respuesta</button>
         </div>
 
         <!-- Form -->
@@ -295,86 +295,120 @@
           <p id="rsvp-greeting" class="rsvp-greeting">
             Hola, <span>...</span> 👋
           </p>
+
+          <!-- Step indicator -->
+          <div class="step-dots">
+            <div class="step-dot active" id="dot-1"></div>
+            <div class="step-connector"></div>
+            <div class="step-dot" id="dot-2"></div>
+            <div class="step-connector"></div>
+            <div class="step-dot" id="dot-3"></div>
+          </div>
+          <p class="step-label" id="step-label">Paso 1 de 3</p>
+
           <form id="rsvp-form" class="rsvp-form" novalidate>
 
-            <!-- Attending -->
-            <div class="form-group">
-              <label class="form-label" data-i18n="rsvp_attending_label">¿Vas a la boda?</label>
-              <div class="radio-group">
-                <label class="radio-opt" data-group="attending" data-value="yes">
-                  <input type="radio" name="attending" value="yes">
-                  <span data-i18n="rsvp_yes">¡Sí, voy! 🎉</span>
-                </label>
-                <label class="radio-opt" data-group="attending" data-value="no">
-                  <input type="radio" name="attending" value="no">
-                  <span data-i18n="rsvp_no">No puedo ir</span>
-                </label>
-              </div>
-            </div>
+            <!-- STEP 1: basics -->
+            <div id="step-1" class="rsvp-step">
 
-            <hr class="form-divider">
-
-            <!-- +1 section (hidden until attending=yes) -->
-            <div id="plus-one-section" class="hidden">
+              <!-- Attending -->
               <div class="form-group">
-                <label class="form-label" data-i18n="rsvp_plus_one_label">¿Llevás acompañante?</label>
+                <label class="form-label" data-i18n="rsvp_attending_label">¿Vas a la boda?</label>
                 <div class="radio-group">
-                  <label class="radio-opt" data-group="plus_one" data-value="yes">
-                    <input type="radio" name="plus_one" value="yes">
-                    <span data-i18n="rsvp_plus_one_yes">Sí</span>
+                  <label class="radio-opt" data-group="attending" data-value="yes">
+                    <input type="radio" name="attending" value="yes">
+                    <span data-i18n="rsvp_yes">¡Sí, voy! 🎉</span>
                   </label>
-                  <label class="radio-opt" data-group="plus_one" data-value="no">
-                    <input type="radio" name="plus_one" value="no">
-                    <span data-i18n="rsvp_plus_one_no">No</span>
+                  <label class="radio-opt" data-group="attending" data-value="no">
+                    <input type="radio" name="attending" value="no">
+                    <span data-i18n="rsvp_no">No puedo ir</span>
                   </label>
                 </div>
               </div>
 
-              <!-- +1 name (hidden until plus_one=yes) -->
-              <div id="plus-one-name-section" class="form-group hidden" style="margin-top: 1rem;">
-                <label class="form-label" for="rsvp-plus-one-name" data-i18n="rsvp_plus_one_name_label">Nombre del/la acompañante</label>
-                <input id="rsvp-plus-one-name" class="form-input" type="text" autocomplete="name"
-                  data-i18n-ph="rsvp_plus_one_name_ph" placeholder="Nombre completo">
+              <hr class="form-divider">
+
+              <!-- +1 section (hidden until attending=yes) -->
+              <div id="plus-one-section" class="hidden">
+                <div class="form-group">
+                  <label class="form-label" data-i18n="rsvp_plus_one_label">¿Llevás acompañante?</label>
+                  <div class="radio-group">
+                    <label class="radio-opt" data-group="plus_one" data-value="yes">
+                      <input type="radio" name="plus_one" value="yes">
+                      <span data-i18n="rsvp_plus_one_yes">Sí</span>
+                    </label>
+                    <label class="radio-opt" data-group="plus_one" data-value="no">
+                      <input type="radio" name="plus_one" value="no">
+                      <span data-i18n="rsvp_plus_one_no">No</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="plus-one-name-section" class="form-group hidden" style="margin-top: 1rem;">
+                  <label class="form-label" for="rsvp-plus-one-name" data-i18n="rsvp_plus_one_name_label">Nombre del/la acompañante</label>
+                  <input id="rsvp-plus-one-name" class="form-input" type="text" autocomplete="name"
+                    data-i18n-ph="rsvp_plus_one_name_ph" placeholder="Nombre completo">
+                </div>
+              </div>
+
+              <hr class="form-divider">
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label class="form-label" for="rsvp-phone" data-i18n="rsvp_phone_label">Celular</label>
+                <input id="rsvp-phone" class="form-input" type="tel" autocomplete="tel"
+                  data-i18n-ph="rsvp_phone_ph" placeholder="+54 11 xxxx-xxxx">
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="form-label" for="rsvp-email" data-i18n="rsvp_email_label">Email</label>
+                <input id="rsvp-email" class="form-input" type="email" autocomplete="email"
+                  data-i18n-ph="rsvp_email_ph" placeholder="vos@email.com">
+              </div>
+
+              <!-- Arrival day -->
+              <div class="form-group">
+                <label class="form-label" for="rsvp-arrival" data-i18n="rsvp_arrival_label">Día aproximado de llegada</label>
+                <select id="rsvp-arrival" class="form-input form-select">
+                  <option value="" data-i18n="rsvp_arrival_ph">Seleccioná un día...</option>
+                  <option value="2027-03-22" data-i18n="rsvp_arrival_mar22">Lunes 22 de marzo</option>
+                  <option value="2027-03-23" data-i18n="rsvp_arrival_mar23">Martes 23 de marzo</option>
+                  <option value="2027-03-24" data-i18n="rsvp_arrival_mar24">Miércoles 24 de marzo</option>
+                  <option value="2027-03-25" data-i18n="rsvp_arrival_mar25">Jueves 25 de marzo</option>
+                  <option value="2027-03-26" data-i18n="rsvp_arrival_mar26">Viernes 26 de marzo</option>
+                </select>
+              </div>
+
+              <!-- Notes -->
+              <div class="form-group">
+                <label class="form-label" for="rsvp-notes" data-i18n="rsvp_notes_label">Restricciones alimentarias u otras notas</label>
+                <textarea id="rsvp-notes" class="form-input form-textarea"
+                  data-i18n-ph="rsvp_notes_ph" placeholder="Celíaco, vegetariano, alergias... (opcional)"></textarea>
+              </div>
+
+              <button type="button" id="step-next-1" class="btn-submit" data-i18n="rsvp_next">Siguiente →</button>
+            </div>
+
+            <!-- STEP 2: included events -->
+            <div id="step-2" class="rsvp-step hidden">
+              <p class="step-intro" data-i18n="rsvp_included_intro">Estas actividades ya están organizadas y pagas. ¿Vas a estar?</p>
+              <div id="step-2-events" class="event-cards-list"></div>
+              <div class="step-nav">
+                <button type="button" class="btn-back" id="step-back-2" data-i18n="rsvp_back">← Atrás</button>
+                <button type="button" class="btn-submit" id="step-next-2" data-i18n="rsvp_next">Siguiente →</button>
               </div>
             </div>
 
-            <hr class="form-divider">
-
-            <!-- Phone -->
-            <div class="form-group">
-              <label class="form-label" for="rsvp-phone" data-i18n="rsvp_phone_label">Celular</label>
-              <input id="rsvp-phone" class="form-input" type="tel" autocomplete="tel"
-                data-i18n-ph="rsvp_phone_ph" placeholder="+54 11 xxxx-xxxx">
+            <!-- STEP 3: optional + paid events -->
+            <div id="step-3" class="rsvp-step hidden">
+              <p class="step-intro" data-i18n="rsvp_activities_intro">¿Te sumás a algo más durante la semana?</p>
+              <div id="step-3-events" class="event-cards-list"></div>
+              <div class="step-nav">
+                <button type="button" class="btn-back" id="step-back-3" data-i18n="rsvp_back">← Atrás</button>
+                <button type="button" id="rsvp-submit-btn" class="btn-submit" data-i18n="rsvp_submit">Confirmar</button>
+              </div>
             </div>
 
-            <!-- Email -->
-            <div class="form-group">
-              <label class="form-label" for="rsvp-email" data-i18n="rsvp_email_label">Email</label>
-              <input id="rsvp-email" class="form-input" type="email" autocomplete="email"
-                data-i18n-ph="rsvp_email_ph" placeholder="vos@email.com">
-            </div>
-
-            <!-- Arrival day -->
-            <div class="form-group">
-              <label class="form-label" for="rsvp-arrival" data-i18n="rsvp_arrival_label">Día aproximado de llegada</label>
-              <select id="rsvp-arrival" class="form-input form-select">
-                <option value="" data-i18n="rsvp_arrival_ph">Seleccioná un día...</option>
-                <option value="2027-03-22" data-i18n="rsvp_arrival_mar22">Lunes 22 de marzo</option>
-                <option value="2027-03-23" data-i18n="rsvp_arrival_mar23">Martes 23 de marzo</option>
-                <option value="2027-03-24" data-i18n="rsvp_arrival_mar24">Miércoles 24 de marzo</option>
-                <option value="2027-03-25" data-i18n="rsvp_arrival_mar25">Jueves 25 de marzo</option>
-                <option value="2027-03-26" data-i18n="rsvp_arrival_mar26">Viernes 26 de marzo</option>
-              </select>
-            </div>
-
-            <!-- Notes -->
-            <div class="form-group">
-              <label class="form-label" for="rsvp-notes" data-i18n="rsvp_notes_label">Restricciones alimentarias u otras notas</label>
-              <textarea id="rsvp-notes" class="form-input form-textarea"
-                data-i18n-ph="rsvp_notes_ph" placeholder="Celíaco, vegetariano, alergias... (opcional)"></textarea>
-            </div>
-
-            <button id="rsvp-submit-btn" type="submit" class="btn-submit" data-i18n="rsvp_submit">Confirmar</button>
           </form>
         </div>
 

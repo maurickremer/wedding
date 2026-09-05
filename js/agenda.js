@@ -1,5 +1,6 @@
 // day_index: 0=Mon, 1=Tue, 2=Wed, 3=Thu, 4=Fri, 5=Sat, 6=Sun
-// type: "suggested" | "optional" | "wedding"
+// type: "suggested" | "optional" | "included" | "paid" | "wedding"
+// rsvpKey: string — events with this field are tracked in the RSVP form
 const AGENDA = [
   {
     dateNum: 22, dayIndex: 0,
@@ -9,7 +10,7 @@ const AGENDA = [
     events: [
       { type: "suggested", icon: "✈️", titleEs: "Llegada a Colorado", titleEn: "Arrival to Colorado" },
       {
-        type: "suggested", icon: "🍺",
+        type: "paid", icon: "🍺", rsvpKey: "coors",
         titleEs: "Coors Brewery Tour", titleEn: "Coors Brewery Tour",
         descEs: "10am–4pm · $25 por persona · Reservar con anticipación para grupos",
         descEn: "10am–4pm · $25/person · Book ahead for groups",
@@ -30,14 +31,15 @@ const AGENDA = [
     isWeddingDay: false,
     events: [
       { type: "suggested", icon: "☕", titleEs: "Brunch", titleEn: "Brunch", descEs: "Lugar a confirmar", descEn: "Venue TBD" },
-      { type: "optional", icon: "🎸", titleEs: "Concierto en Red Rocks", titleEn: "Red Rocks Concert" },
+      { type: "optional", icon: "🎸", rsvpKey: "red_rocks", titleEs: "Concierto en Red Rocks", titleEn: "Red Rocks Concert" },
       { type: "optional", icon: "🍺", titleEs: "Tour Brewery Odell", titleEn: "Odell Brewery Tour" },
       { type: "optional", icon: "🎨", titleEs: "Meow Wolf (arte surrealista)", titleEn: "Meow Wolf (surrealist art)" },
       { type: "optional", icon: "🖼️", titleEs: "Denver Art Museum", titleEn: "Denver Art Museum" },
       {
-        type: "suggested", icon: "🏒",
+        type: "paid", icon: "🏒", rsvpKey: "avalanche",
         titleEs: "Avalanche vs Mammoth", titleEn: "Avalanche vs Mammoth",
-        descEs: "Partido grupal · Noche", descEn: "Group game · Evening",
+        descEs: "Partido grupal · Noche · Costo aprox. $30–60 por persona",
+        descEn: "Group game · Evening · Approx. $30–60/person",
         linkLabel: "avalanchetix.com/group-experiences",
         linkUrl: "https://www.avalanchetix.com/group-experiences",
       },
@@ -76,7 +78,7 @@ const AGENDA = [
     isWeddingDay: false,
     events: [
       {
-        type: "optional", icon: "⛷️",
+        type: "optional", icon: "⛷️", rsvpKey: "actividades_nieve",
         titleEs: "Actividades en la nieve", titleEn: "Snow activities",
         descEs: "Ski · Cross Country Skiing (Nordic Center) · Tubing · Snowmobile · Snow Mushing",
         descEn: "Skiing · Cross Country (Nordic Center) · Tubing · Snowmobile · Snow Mushing",
@@ -88,7 +90,7 @@ const AGENDA = [
         descEn: "Leadville Mining Museum · historic downtown",
       },
       {
-        type: "suggested", icon: "🎉",
+        type: "optional", icon: "🎉", rsvpKey: "fiesta_argenta",
         titleEs: "Fiesta argenta", titleEn: "Argentinian party",
         descEs: "Para 80 personas · Noche", descEn: "80 guests · Evening",
       },
@@ -101,7 +103,7 @@ const AGENDA = [
     isWeddingDay: false,
     events: [
       {
-        type: "suggested", icon: "🚂",
+        type: "included", icon: "🚂", rsvpKey: "tren_nieve",
         titleEs: "Tren en la nieve", titleEn: "Snow train ride",
         descEs: "1:30 PM – 3:30 PM", descEn: "1:30 PM – 3:30 PM",
         linkLabel: "leadvillerailroad.com",
@@ -113,7 +115,7 @@ const AGENDA = [
         descEs: "4:00 PM · Solo cortejo nupcial", descEn: "4:00 PM · Wedding party only",
       },
       {
-        type: "suggested", icon: "🍷",
+        type: "included", icon: "🍷", rsvpKey: "cena_grupal",
         titleEs: "Cena grupal", titleEn: "Group dinner",
         descEs: "Lugar a confirmar", descEn: "Venue TBD",
       },
@@ -126,7 +128,7 @@ const AGENDA = [
     isWeddingDay: true,
     events: [
       {
-        type: "suggested", icon: "🎣",
+        type: "optional", icon: "🎣", rsvpKey: "ice_fishing",
         titleEs: "Ice Fishing (Mauri y los chicos)", titleEn: "Ice Fishing (Mauri & the guys)",
         descEs: "Mañana", descEn: "Morning",
         linkLabel: "leadville.com",
@@ -142,7 +144,7 @@ const AGENDA = [
     isWeddingDay: false,
     events: [
       {
-        type: "suggested", icon: "🥂",
+        type: "optional", icon: "🥂", rsvpKey: "brunch",
         titleEs: "Brunch con los novios", titleEn: "Brunch with the couple",
         descEs: "Freight o centro de Leadville", descEn: "Freight or downtown Leadville",
       },
