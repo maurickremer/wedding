@@ -31,3 +31,6 @@ admin/config.js
 *.sw?
 .vercel
 .env*
+node_modules/
+package.json
+package-lock.json
