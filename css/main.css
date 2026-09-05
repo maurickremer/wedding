@@ -483,6 +483,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-top: 1px;
   font-size: 0.85rem;
 }
+.info-list li strong {
+  white-space: nowrap;
+}
 .info-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -726,10 +729,19 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    RESPONSIVE
    ======================== */
 @media (max-width: 600px) {
-  .section { padding: 4rem 1rem; }
+  .section { padding: 3.5rem 1rem; }
+  .section-header { margin-bottom: 2rem; }
+  .section-header h2 { font-size: 1.85rem; }
   .agenda-grid { grid-template-columns: 1fr; }
   .radio-group { flex-direction: column; }
-  .btn-submit { align-self: stretch; text-align: center; }
+  .btn-submit { align-self: stretch; text-align: center; width: 100%; }
+  .btn-edit { width: 100%; text-align: center; }
   .dress-examples { grid-template-columns: 1fr; }
-  .tab-btn { padding: 10px 14px; font-size: 0.68rem; }
+  .tab-btn { padding: 10px 12px; font-size: 0.65rem; }
+  .tab-buttons {
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  }
+  .rsvp-state { padding: 2rem 0.5rem; }
+  .info-section h3 { font-size: 1.35rem; }
 }
