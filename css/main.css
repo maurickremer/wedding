@@ -558,6 +558,53 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text);
   line-height: 1.4;
 }
+.dress-gender-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+.dress-gender-block h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.04em;
+}
+.dress-important {
+  background: var(--bg-alt);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+}
+.dress-colors {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+.dress-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.dress-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+.info-alert {
+  background: #fffbeb;
+  border: 1px solid #f6d860;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
 
 /* ========================
    RSVP
@@ -903,6 +950,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .btn-submit { align-self: stretch; text-align: center; width: 100%; }
   .btn-edit { width: 100%; text-align: center; }
   .dress-examples { grid-template-columns: 1fr; }
+  .dress-gender-grid { grid-template-columns: 1fr; }
+  .dress-photos { grid-template-columns: 1fr; }
   .tab-btn { padding: 10px 12px; font-size: 0.65rem; }
   .tab-buttons {
     -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);

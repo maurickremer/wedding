@@ -36,7 +36,7 @@ const LANG = {
     rsvp_add_guest: "+ Agregar persona",
     rsvp_guest_name_ph: "Nombre completo",
     rsvp_arrival_label: "Llegada a Colorado",
-    rsvp_shuttle_label: "¿Te interesa compartir un shuttle con otros invitados al llegar?",
+    rsvp_shuttle_label: "¿Te interesa un transfer grupal privado? (sin necesidad de alquilar auto ni hacer carpool)",
     rsvp_shuttle_yes: "Sí, me interesa",
     rsvp_shuttle_no: "No, gracias",
     rsvp_accomm_label: "¿Qué tipo de alojamiento preferís?",
@@ -76,13 +76,13 @@ const LANG = {
 
     faq_title: "Preguntas frecuentes",
     faqs: [
-      { q: "¿Dónde me alojo en Leadville?", a: "Leadville es un pueblo pequeño con capacidad limitada. ¡Reservá cuanto antes! Hay opciones en el mismo Leadville y en pueblos cercanos como Frisco, Breckenridge o Twin Lakes. Pronto compartiremos recomendaciones específicas con bloqueos de habitaciones." },
+      { q: "¿Dónde me alojo en Leadville?", a: "Leadville es un pueblo pequeño con capacidad limitada. ¡Reservá cuanto antes! Hay opciones en el mismo Leadville y en pueblos cercanos como Frisco, Breckenridge o Twin Lakes. Pronto compartiremos recomendaciones de hoteles específicos. También existe la opción de sumarse a un grupo para alquilar un Airbnb — indicalo en tu RSVP si te interesa." },
       { q: "¿Necesito alquilar un auto?", a: "Sí, es muy recomendable. Leadville está a ~2 horas de Denver por la I-70 y no hay transporte público. Si van en grupo, coordinen un auto compartido para reducir costos. También organizaremos traslados para algunos eventos de la semana." },
       { q: "¿Qué pasa si me marea la altura? ¿Es peligroso?", a: "Leadville está a 3.094 msnm (10.152 ft) — la ciudad más alta de los EE.UU. Es muy normal sentir cansancio, leve dolor de cabeza o sed el primer día. Recomendamos: llegar uno o dos días antes, hidratarse mucho (nada de alcohol el primer día), descansar, y tener ibuprofeno a mano. Si tenés condiciones cardíacas o respiratorias, consultá a tu médico antes del viaje." },
       { q: "¿Hay transporte organizado entre eventos?", a: "Estamos coordinando traslados para los eventos principales de la semana. Los detalles se confirmarán a medida que se acerque la fecha. Seguí este sitio para actualizaciones." },
-      { q: "¿Puedo llevar niños?", a: "La boda en sí es solo para adultos (18+), pero durante la semana los chicos son bienvenidos en las actividades grupales. Si tenés dudas sobre tu situación, escribinos." },
+      { q: "¿Puedo llevar niños?", a: "¡Sí! Los chicos son bienvenidos en todas las actividades de la semana. Si necesitás recomendaciones de babysitting para algún momento, avisanos y te ayudamos." },
       { q: "¿Cuándo es el deadline del RSVP?", a: "15 de febrero de 2027. Igual, podés actualizar tu respuesta en cualquier momento con tu link personal si cambian tus planes. ¡Mientras más rápido mejor para organizar todo!" },
-      { q: "¿Qué es exactamente 'Alpine Patagonian Chic'?", a: "Es el look perfecto para una boda a 3.000 metros en marzo: elegante pero con abrigo real. Pensá en capas sofisticadas — blazer sobre sweater de cashmere, botas impermeables con estilo, vestido con medias gruesas, parka elegante. Tacos altos en la nieve = no recomendado. Más detalles y referencias en la sección de Vestimenta." },
+      { q: "¿Qué es exactamente 'Alpine Patagonian Chic'?", a: "Es el look perfecto para una boda a 3.000 metros en marzo: elegante pero con abrigo real. La ceremonia es afuera (en la nieve), la recepción adentro en un salón calefaccionado — así que el look bajo el abrigo también tiene que verse bien. Pensá en capas sofisticadas: abrigo de lana + blazer + sweater de cashmere + botas de cuero. No jeans, no stilettos, no calzas. Colores: verde bosque, borgoña, navy, camel, gris, tonos tierra. Mirá fotos de ejemplo en la sección de Vestimenta." },
     ],
   },
 
@@ -123,7 +123,7 @@ const LANG = {
     rsvp_add_guest: "+ Add person",
     rsvp_guest_name_ph: "Full name",
     rsvp_arrival_label: "Arrival in Colorado",
-    rsvp_shuttle_label: "Would you like to share a shuttle with other guests when you arrive?",
+    rsvp_shuttle_label: "Are you interested in a private group transfer? (no need to rent a car or carpool)",
     rsvp_shuttle_yes: "Yes, I'm interested",
     rsvp_shuttle_no: "No, thanks",
     rsvp_accomm_label: "What type of accommodation do you prefer?",
@@ -163,13 +163,13 @@ const LANG = {
 
     faq_title: "FAQ",
     faqs: [
-      { q: "Where do I stay in Leadville?", a: "Leadville is a small mountain town with limited accommodation — book early! Options in Leadville itself and nearby towns like Frisco, Breckenridge, or Twin Lakes. We'll share specific recommendations and room blocks soon." },
+      { q: "Where do I stay in Leadville?", a: "Leadville is a small mountain town with limited accommodation — book early! Options in Leadville itself and nearby towns like Frisco, Breckenridge, or Twin Lakes. We'll share specific hotel recommendations soon. There's also the option to be grouped with other guests to rent an Airbnb together — let us know in your RSVP if you're interested." },
       { q: "Do I need a rental car?", a: "Yes, strongly recommended. Leadville is ~2 hours from Denver on I-70 with no public transport. Coordinate carpools to save costs. We're also organizing transfers for some week events — details coming." },
       { q: "What about altitude sickness?", a: "Leadville sits at 10,152 ft (3,094m) — the highest city in the US. Mild fatigue, headaches, and thirst on day one are completely normal. Recommendations: arrive a day or two early, drink lots of water (avoid alcohol day one), rest, and keep ibuprofen handy. If you have heart or lung conditions, consult your doctor before traveling." },
       { q: "Is there organized transport between events?", a: "We're coordinating transfers for the main week events. Details will be confirmed closer to the date — check back here for updates." },
-      { q: "Can I bring kids?", a: "The wedding itself is adults-only (18+), but children are welcome at the week's group activities. Reach out if you have questions about your specific situation." },
+      { q: "Can I bring kids?", a: "Yes! Kids are welcome at all activities throughout the week. If you need babysitting recommendations for any moments during the celebration, just let us know and we'll help." },
       { q: "When is the RSVP deadline?", a: "February 15, 2027. But you can update your RSVP anytime using your personal link if plans change. Earlier is better for our planning!" },
-      { q: "What exactly is 'Alpine Patagonian Chic'?", a: "The perfect look for a 10,000 ft wedding in March: elegant but actually warm. Think sophisticated layers — blazer over cashmere sweater, stylish waterproof boots, dress with thick tights, elegant parka. No stilettos in the snow. More details and inspiration in the Dress Code section." },
+      { q: "What exactly is 'Alpine Patagonian Chic'?", a: "The perfect look for a 10,000 ft wedding in March: elegant but actually warm. The ceremony is outside (in the snow) and the reception is indoors in a heated hall — so your outfit under the coat needs to look great too. Think sophisticated layers: wool coat + blazer + cashmere sweater + leather boots. No jeans, no stilettos, no leggings. Colors: forest green, burgundy, navy, camel, charcoal, earth tones. See photo examples in the Dress Code tab." },
     ],
   },
 };
