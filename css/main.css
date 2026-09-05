@@ -246,6 +246,37 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ========================
+   PHOTO STRIP
+   ======================== */
+.photo-strip {
+  overflow: hidden;
+  width: 100%;
+  height: 260px;
+  background: #0a1520;
+}
+.photo-strip-track {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  animation: strip-scroll 40s linear infinite;
+}
+.photo-strip-track img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  display: block;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+@keyframes strip-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.photo-strip:hover .photo-strip-track {
+  animation-play-state: paused;
+}
+
+/* ========================
    SECTIONS
    ======================== */
 .section {
