@@ -109,11 +109,6 @@ const AGENDA = [
         linkUrl: "https://leadvillerailroad.com/",
       },
       {
-        type: "suggested", icon: "💍",
-        titleEs: "Ensayo de la ceremonia", titleEn: "Wedding rehearsal",
-        descEs: "4:00 PM · Solo cortejo nupcial", descEn: "4:00 PM · Wedding party only",
-      },
-      {
         type: "included", icon: "🍷", rsvpKey: "cena_grupal",
         titleEs: "Cena grupal", titleEn: "Group dinner",
         descEs: "Lugar a confirmar", descEn: "Venue TBD",
