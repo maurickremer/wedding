@@ -26,6 +26,10 @@ function renderAgenda() {
         ? `<span class="event-badge badge-suggested">${t('badge_suggested')}</span>`
         : ev.type === 'optional'
         ? `<span class="event-badge badge-optional">${t('badge_optional')}</span>`
+        : ev.type === 'included'
+        ? `<span class="event-badge badge-included">${t('badge_included')}</span>`
+        : ev.type === 'paid'
+        ? `<span class="event-badge badge-paid">${t('badge_paid')}</span>`
         : '';
 
       return `

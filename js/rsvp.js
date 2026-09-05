@@ -37,10 +37,68 @@ function dbHeaders() {
 }
 
 // ========================
+// RSVP EVENTS DATA
+// ========================
+const RSVP_EVENTS = {
+  included: [
+    {
+      key: 'tren_nieve', icon: '🚂',
+      titleEs: 'Tren en la nieve', titleEn: 'Snow train ride',
+      descEs: 'Viernes 26 · 1:30–3:30pm', descEn: 'Friday March 26 · 1:30–3:30pm',
+    },
+    {
+      key: 'cena_grupal', icon: '🍷',
+      titleEs: 'Cena grupal', titleEn: 'Group dinner',
+      descEs: 'Viernes 26 · noche', descEn: 'Friday March 26 · evening',
+    },
+  ],
+  optional: [
+    {
+      key: 'fiesta_argenta', icon: '🎉',
+      titleEs: 'Fiesta argenta', titleEn: 'Argentinian party',
+      descEs: 'Jueves 25 · noche', descEn: 'Thursday March 25 · evening',
+    },
+    {
+      key: 'actividades_nieve', icon: '⛷️',
+      titleEs: 'Actividades en la nieve', titleEn: 'Snow activities',
+      descEs: 'Jueves 25 · Ski · Tubing · Snowmobile', descEn: 'Thursday March 25 · Skiing · Tubing · Snowmobile',
+    },
+    {
+      key: 'ice_fishing', icon: '🎣',
+      titleEs: 'Ice Fishing (Mauri y los chicos)', titleEn: 'Ice Fishing (Mauri & the guys)',
+      descEs: 'Sábado 27 · mañana', descEn: 'Saturday March 27 · morning',
+    },
+    {
+      key: 'red_rocks', icon: '🎸',
+      titleEs: 'Concierto en Red Rocks', titleEn: 'Red Rocks Concert',
+      descEs: 'Martes 23 · Denver · Artista a confirmar', descEn: 'Tuesday March 23 · Denver · Artist TBD',
+    },
+    {
+      key: 'brunch', icon: '🥂',
+      titleEs: 'Brunch con los novios', titleEn: 'Brunch with the couple',
+      descEs: 'Domingo 28 · mañana', descEn: 'Sunday March 28 · morning',
+    },
+  ],
+  paid: [
+    {
+      key: 'coors', icon: '🍺',
+      titleEs: 'Coors Brewery Tour', titleEn: 'Coors Brewery Tour',
+      descEs: 'Lunes 22 · Denver · Costo aprox. $25 por persona', descEn: 'Monday March 22 · Denver · Approx. $25/person',
+    },
+    {
+      key: 'avalanche', icon: '🏒',
+      titleEs: 'Avalanche vs Mammoth', titleEn: 'Avalanche vs Mammoth',
+      descEs: 'Martes 23 · Denver · Costo aprox. $30–60 por persona', descEn: 'Tuesday March 23 · Denver · Approx. $30–60/person',
+    },
+  ],
+};
+
+// ========================
 // STATE
 // ========================
 let guestToken = null;
 let guestData = null;
+let currentStep = 1;
 
 // ========================
 // ELEMENTS
@@ -54,6 +112,22 @@ function showState(state) {
   });
   const target = el(state);
   if (target) target.classList.remove('hidden');
+}
+
+// ========================
+// STEPPER
+// ========================
+function goToStep(step) {
+  [1, 2, 3].forEach(n => {
+    const s = el(`step-${n}`);
+    if (s) s.classList.toggle('hidden', n !== step);
+    const dot = el(`dot-${n}`);
+    if (dot) dot.classList.toggle('active', n <= step);
+  });
+  currentStep = step;
+  const label = el('step-label');
+  if (label) label.textContent = t('rsvp_step_of').replace('{n}', step);
+  el('rsvp-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ========================
@@ -82,6 +156,20 @@ function initRadios() {
   });
 }
 
+function initEventRadios() {
+  document.querySelectorAll('.erc-radios .radio-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.group;
+      document.querySelectorAll(`.erc-radios .radio-opt[data-group="${group}"]`).forEach(b => {
+        b.classList.remove('selected');
+        b.querySelector('input').checked = false;
+      });
+      btn.classList.add('selected');
+      btn.querySelector('input').checked = true;
+    });
+  });
+}
+
 function setRadio(group, value) {
   const btn = document.querySelector(`.radio-opt[data-group="${group}"][data-value="${value}"]`);
   if (btn) btn.click();
@@ -93,12 +181,87 @@ function getRadio(group) {
 }
 
 // ========================
+// EVENT CARD RENDERING
+// ========================
+function renderEventCard(ev, type) {
+  const lang = typeof currentLang !== 'undefined' ? currentLang : 'es';
+  const title = lang === 'es' ? ev.titleEs : ev.titleEn;
+  const desc = lang === 'es' ? ev.descEs : ev.descEn;
+
+  const badgeClass = type === 'included' ? 'badge-included' : type === 'optional' ? 'badge-optional' : 'badge-paid';
+  const badgeText = t(`badge_${type}`);
+
+  const yesLabel = type === 'included' ? t('ev_going') : t('ev_joining');
+  const noLabel = type === 'included' ? t('ev_not_going') : t('ev_skipping');
+
+  const saved = guestData?.event_selections?.[ev.key];
+  const yesSelected = saved === true ? 'selected' : '';
+  const noSelected = saved === false ? 'selected' : '';
+
+  return `
+    <div class="event-rsvp-card">
+      <div class="erc-header">
+        <span class="erc-icon">${ev.icon}</span>
+        <div class="erc-body">
+          <div class="erc-title">${title}</div>
+          <div class="erc-desc">${desc}</div>
+        </div>
+        <span class="event-badge ${badgeClass}">${badgeText}</span>
+      </div>
+      <div class="radio-group erc-radios">
+        <label class="radio-opt ${yesSelected}" data-group="ev_${ev.key}" data-value="yes">
+          <input type="radio" name="ev_${ev.key}" value="yes" ${saved === true ? 'checked' : ''}>
+          <span>${yesLabel}</span>
+        </label>
+        <label class="radio-opt ${noSelected}" data-group="ev_${ev.key}" data-value="no">
+          <input type="radio" name="ev_${ev.key}" value="no" ${saved === false ? 'checked' : ''}>
+          <span>${noLabel}</span>
+        </label>
+      </div>
+    </div>`;
+}
+
+function renderEventSteps() {
+  const lang = typeof currentLang !== 'undefined' ? currentLang : 'es';
+
+  const step2 = el('step-2-events');
+  if (step2) {
+    step2.innerHTML = RSVP_EVENTS.included.map(ev => renderEventCard(ev, 'included')).join('');
+  }
+
+  const step3 = el('step-3-events');
+  if (step3) {
+    const paidNote = lang === 'es' ? t('ev_paid_note') : t('ev_paid_note');
+    step3.innerHTML = `
+      <p class="events-section-label">${t('ev_optional_section')}</p>
+      ${RSVP_EVENTS.optional.map(ev => renderEventCard(ev, 'optional')).join('')}
+      <p class="events-section-label" style="margin-top:1rem;">${t('ev_paid_section')}</p>
+      <p class="events-section-note">${paidNote}</p>
+      ${RSVP_EVENTS.paid.map(ev => renderEventCard(ev, 'paid')).join('')}
+    `;
+  }
+
+  initEventRadios();
+}
+
+function getEventSelections() {
+  const all = [...RSVP_EVENTS.included, ...RSVP_EVENTS.optional, ...RSVP_EVENTS.paid];
+  const selections = {};
+  all.forEach(ev => {
+    const selected = document.querySelector(`.radio-opt[data-group="ev_${ev.key}"].selected`);
+    if (selected) selections[ev.key] = selected.dataset.value === 'yes';
+  });
+  return selections;
+}
+
+// ========================
 // PREFILL FORM
 // ========================
 function prefillForm(guest) {
   const greeting = el('rsvp-greeting');
   if (greeting) {
-    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span>${guest.name}</span> 👋`;
+    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span></span> 👋`;
+    greeting.querySelector('span').textContent = guest.name;
   }
   if (guest.email) el('rsvp-email').value = guest.email;
   if (guest.phone) el('rsvp-phone').value = guest.phone;
@@ -122,10 +285,59 @@ function showSuccess(attending) {
   showState('rsvp-success');
   const editBtn = el('rsvp-edit-btn');
   if (editBtn) {
-    editBtn.onclick = () => {
-      showState('rsvp-form-wrap');
-      el('rsvp-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
+    editBtn.onclick = () => showEditForm();
+  }
+}
+
+function showEditForm() {
+  showState('rsvp-form-wrap');
+  goToStep(1);
+}
+
+// ========================
+// SUBMIT
+// ========================
+async function submitRsvp() {
+  if (!guestToken) return;
+
+  const submitBtn = el('rsvp-submit-btn');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = t('rsvp_saving');
+  }
+
+  const attending = getRadio('attending');
+
+  if (attending === null) {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = t('rsvp_submit');
+    }
+    goToStep(1);
+    return;
+  }
+
+  const payload = {
+    is_attending: attending === 'yes' ? true : attending === 'no' ? false : null,
+    plus_one_confirmed: getRadio('plus_one') === 'yes' ? true : getRadio('plus_one') === 'no' ? false : null,
+    plus_one_name: el('rsvp-plus-one-name').value.trim() || null,
+    phone: el('rsvp-phone').value.trim() || null,
+    email: el('rsvp-email').value.trim() || null,
+    arrival_day: el('rsvp-arrival').value || null,
+    notes: el('rsvp-notes').value.trim() || null,
+    event_selections: getEventSelections(),
+  };
+
+  try {
+    await dbUpdate(guestToken, payload);
+    showSuccess(payload.is_attending);
+  } catch (err) {
+    console.error('RSVP submit error:', err);
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = t('rsvp_submit');
+    }
+    alert(t('rsvp_error'));
   }
 }
 
@@ -142,7 +354,6 @@ async function initRsvp() {
   }
 
   if (!isConfigured()) {
-    // Supabase not yet configured — show a friendly placeholder
     showState('rsvp-no-token');
     const noToken = el('rsvp-no-token');
     if (noToken) {
@@ -170,15 +381,14 @@ async function initRsvp() {
       return;
     }
 
-    // If already answered, show result (with option to edit)
     if (guestData.is_attending !== null) {
       showSuccess(guestData.is_attending);
-      // Still prefill form in background so editing works seamlessly
       prefillForm(guestData);
       return;
     }
 
     showState('rsvp-form-wrap');
+    goToStep(1);
     prefillForm(guestData);
 
   } catch (err) {
@@ -193,51 +403,51 @@ async function initRsvp() {
 }
 
 // ========================
-// FORM SUBMIT
+// INIT STEPPER NAV
 // ========================
 function initRsvpSubmit() {
-  const form = el('rsvp-form');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!guestToken) return;
-
-    const submitBtn = el('rsvp-submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = t('rsvp_saving');
-
+  // Step 1 → next
+  el('step-next-1')?.addEventListener('click', () => {
     const attending = getRadio('attending');
-    const plusOne = getRadio('plus_one');
-
-    const payload = {
-      is_attending: attending === 'yes' ? true : attending === 'no' ? false : null,
-      plus_one_confirmed: plusOne === 'yes' ? true : plusOne === 'no' ? false : null,
-      plus_one_name: el('rsvp-plus-one-name').value.trim() || null,
-      phone: el('rsvp-phone').value.trim() || null,
-      email: el('rsvp-email').value.trim() || null,
-      arrival_day: el('rsvp-arrival').value || null,
-      notes: el('rsvp-notes').value.trim() || null,
-    };
-
-    try {
-      await dbUpdate(guestToken, payload);
-      showSuccess(payload.is_attending);
-    } catch (err) {
-      console.error('RSVP submit error:', err);
-      submitBtn.disabled = false;
-      submitBtn.textContent = t('rsvp_submit');
-      alert(t('rsvp_error'));
+    if (attending === null) return;
+    if (attending === 'no') {
+      submitRsvp();
+      return;
     }
+    renderEventSteps();
+    goToStep(2);
   });
+
+  // Step 2 → back
+  el('step-back-2')?.addEventListener('click', () => goToStep(1));
+
+  // Step 2 → next
+  el('step-next-2')?.addEventListener('click', () => goToStep(3));
+
+  // Step 3 → back
+  el('step-back-3')?.addEventListener('click', () => goToStep(2));
+
+  // Step 3 → submit
+  el('rsvp-submit-btn')?.addEventListener('click', () => submitRsvp());
 }
 
 // Called by setLang to refresh dynamic labels
 function updateRsvpLang() {
   const greeting = el('rsvp-greeting');
   if (greeting && guestData) {
-    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span>${guestData.name}</span> 👋`;
+    greeting.innerHTML = `${t('rsvp_greeting_prefix')} <span></span> 👋`;
+    greeting.querySelector('span').textContent = guestData.name;
   }
+  const label = el('step-label');
+  if (label) label.textContent = t('rsvp_step_of').replace('{n}', currentStep);
+
+  // Re-render event cards if steps 2 or 3 are visible
+  const step2 = el('step-2');
+  const step3 = el('step-3');
+  if ((step2 && !step2.classList.contains('hidden')) || (step3 && !step3.classList.contains('hidden'))) {
+    renderEventSteps();
+  }
+
   const submitBtn = el('rsvp-submit-btn');
   if (submitBtn && !submitBtn.disabled) {
     submitBtn.textContent = t('rsvp_submit');
