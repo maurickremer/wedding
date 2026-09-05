@@ -328,25 +328,15 @@
 
               <hr class="form-divider">
 
-              <!-- +1 section (hidden until attending=yes) -->
+              <!-- Extra guests (hidden until attending=yes) -->
               <div id="plus-one-section" class="hidden">
                 <div class="form-group">
-                  <label class="form-label" data-i18n="rsvp_plus_one_label">¿Llevás acompañante?</label>
-                  <div class="radio-group">
-                    <label class="radio-opt" data-group="plus_one" data-value="yes">
-                      <input type="radio" name="plus_one" value="yes">
-                      <span data-i18n="rsvp_plus_one_yes">Sí</span>
-                    </label>
-                    <label class="radio-opt" data-group="plus_one" data-value="no">
-                      <input type="radio" name="plus_one" value="no">
-                      <span data-i18n="rsvp_plus_one_no">No</span>
-                    </label>
-                  </div>
-                </div>
-                <div id="plus-one-name-section" class="form-group hidden" style="margin-top: 1rem;">
-                  <label class="form-label" for="rsvp-plus-one-name" data-i18n="rsvp_plus_one_name_label">Nombre del/la acompañante</label>
-                  <input id="rsvp-plus-one-name" class="form-input" type="text" autocomplete="name"
-                    data-i18n-ph="rsvp_plus_one_name_ph" placeholder="Nombre completo">
+                  <label class="form-label" data-i18n="rsvp_extra_guests_label">¿Venís con alguien más?</label>
+                  <p class="form-hint" data-i18n="rsvp_extra_guests_hint">Agregá los nombres de acompañantes o hijos que vienen con vos.</p>
+                  <div id="extra-guests-list"></div>
+                  <button type="button" class="btn-add-guest" onclick="addExtraGuest()">
+                    <span data-i18n="rsvp_add_guest">+ Agregar persona</span>
+                  </button>
                 </div>
               </div>
 
@@ -368,15 +358,38 @@
 
               <!-- Arrival day -->
               <div class="form-group">
-                <label class="form-label" for="rsvp-arrival" data-i18n="rsvp_arrival_label">Día aproximado de llegada</label>
-                <select id="rsvp-arrival" class="form-input form-select">
-                  <option value="" data-i18n="rsvp_arrival_ph">Seleccioná un día...</option>
-                  <option value="2027-03-22" data-i18n="rsvp_arrival_mar22">Lunes 22 de marzo</option>
-                  <option value="2027-03-23" data-i18n="rsvp_arrival_mar23">Martes 23 de marzo</option>
-                  <option value="2027-03-24" data-i18n="rsvp_arrival_mar24">Miércoles 24 de marzo</option>
-                  <option value="2027-03-25" data-i18n="rsvp_arrival_mar25">Jueves 25 de marzo</option>
-                  <option value="2027-03-26" data-i18n="rsvp_arrival_mar26">Viernes 26 de marzo</option>
-                </select>
+                <label class="form-label" for="rsvp-arrival" data-i18n="rsvp_arrival_label">Llegada a Colorado</label>
+                <input id="rsvp-arrival" class="form-input" type="date" min="2027-03-20" max="2027-03-28">
+              </div>
+
+              <!-- Shuttle -->
+              <div class="form-group">
+                <label class="form-label" data-i18n="rsvp_shuttle_label">¿Te interesa compartir un shuttle con otros invitados al llegar?</label>
+                <div class="radio-group">
+                  <label class="radio-opt" data-group="shuttle" data-value="yes">
+                    <input type="radio" name="shuttle" value="yes">
+                    <span data-i18n="rsvp_shuttle_yes">Sí, me interesa</span>
+                  </label>
+                  <label class="radio-opt" data-group="shuttle" data-value="no">
+                    <input type="radio" name="shuttle" value="no">
+                    <span data-i18n="rsvp_shuttle_no">No, gracias</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Accommodation -->
+              <div class="form-group">
+                <label class="form-label" data-i18n="rsvp_accomm_label">¿Qué tipo de alojamiento preferís?</label>
+                <div class="radio-group radio-group-col">
+                  <label class="radio-opt" data-group="accommodation" data-value="hotel">
+                    <input type="radio" name="accommodation" value="hotel">
+                    <span data-i18n="rsvp_accomm_hotel">🏨 Hotel individual (ver recomendaciones en el sitio)</span>
+                  </label>
+                  <label class="radio-opt" data-group="accommodation" data-value="group_house">
+                    <input type="radio" name="accommodation" value="group_house">
+                    <span data-i18n="rsvp_accomm_group">🏠 Casa grupal (los armaremos con personas cercanas)</span>
+                  </label>
+                </div>
               </div>
 
               <!-- Notes -->

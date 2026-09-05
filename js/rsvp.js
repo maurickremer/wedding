@@ -69,11 +69,6 @@ const RSVP_EVENTS = {
       descEs: 'Sábado 27 · mañana', descEn: 'Saturday March 27 · morning',
     },
     {
-      key: 'red_rocks', icon: '🎸',
-      titleEs: 'Concierto en Red Rocks', titleEn: 'Red Rocks Concert',
-      descEs: 'Martes 23 · Denver · Artista a confirmar', descEn: 'Tuesday March 23 · Denver · Artist TBD',
-    },
-    {
       key: 'brunch', icon: '🥂',
       titleEs: 'Brunch con los novios', titleEn: 'Brunch with the couple',
       descEs: 'Domingo 28 · mañana', descEn: 'Sunday March 28 · morning',
@@ -92,6 +87,42 @@ const RSVP_EVENTS = {
     },
   ],
 };
+
+// ========================
+// EXTRA GUESTS (dynamic list)
+// ========================
+let extraGuestSeq = 0;
+
+function addExtraGuest(name) {
+  extraGuestSeq++;
+  const idx = extraGuestSeq;
+  const list = el('extra-guests-list');
+  if (!list) return;
+  const div = document.createElement('div');
+  div.className = 'guest-row';
+  div.id = `guest-row-${idx}`;
+  div.innerHTML = `
+    <input class="form-input guest-name-input" type="text" value="${name ? name.replace(/"/g,'&quot;') : ''}"
+      placeholder="${t('rsvp_guest_name_ph')}">
+    <button type="button" class="guest-remove-btn" onclick="removeExtraGuest(${idx})" aria-label="Eliminar">✕</button>`;
+  list.appendChild(div);
+}
+
+function removeExtraGuest(idx) {
+  const row = el(`guest-row-${idx}`);
+  if (row) row.remove();
+}
+
+function getExtraGuests() {
+  return Array.from(document.querySelectorAll('.guest-name-input'))
+    .map(i => i.value.trim()).filter(Boolean);
+}
+
+function clearExtraGuests() {
+  const list = el('extra-guests-list');
+  if (list) list.innerHTML = '';
+  extraGuestSeq = 0;
+}
 
 // ========================
 // STATE
@@ -145,12 +176,8 @@ function initRadios() {
       btn.querySelector('input').checked = true;
 
       if (group === 'attending') {
-        const attending = btn.dataset.value === 'yes';
-        el('plus-one-section').classList.toggle('hidden', !attending);
-        if (!attending) el('plus-one-name-section').classList.add('hidden');
-      }
-      if (group === 'plus_one') {
-        el('plus-one-name-section').classList.toggle('hidden', btn.dataset.value !== 'yes');
+        el('plus-one-section').classList.toggle('hidden', btn.dataset.value !== 'yes');
+        if (btn.dataset.value !== 'yes') clearExtraGuests();
       }
     });
   });
@@ -269,9 +296,21 @@ function prefillForm(guest) {
   if (guest.arrival_day) el('rsvp-arrival').value = guest.arrival_day;
   if (guest.is_attending === true) setRadio('attending', 'yes');
   if (guest.is_attending === false) setRadio('attending', 'no');
-  if (guest.plus_one_confirmed === true) setRadio('plus_one', 'yes');
-  if (guest.plus_one_confirmed === false) setRadio('plus_one', 'no');
-  if (guest.plus_one_name) el('rsvp-plus-one-name').value = guest.plus_one_name;
+
+  // Prefill extra guests from plus_one_name (stored as JSON array)
+  clearExtraGuests();
+  if (guest.plus_one_name) {
+    let names = [];
+    try { names = JSON.parse(guest.plus_one_name); if (!Array.isArray(names)) names = [names]; }
+    catch { names = [guest.plus_one_name]; }
+    names.filter(Boolean).forEach(name => addExtraGuest(name));
+  }
+
+  // Prefill shuttle & accommodation from event_selections._* keys
+  const sel = guest.event_selections || {};
+  if (sel._shuttle_interest === true) setRadio('shuttle', 'yes');
+  else if (sel._shuttle_interest === false) setRadio('shuttle', 'no');
+  if (sel._accommodation_type) setRadio('accommodation', sel._accommodation_type);
 }
 
 // ========================
@@ -317,15 +356,21 @@ async function submitRsvp() {
     return;
   }
 
+  const extraGuests = getExtraGuests();
+  const shuttleVal = getRadio('shuttle');
   const payload = {
     is_attending: attending === 'yes' ? true : attending === 'no' ? false : null,
-    plus_one_confirmed: getRadio('plus_one') === 'yes' ? true : getRadio('plus_one') === 'no' ? false : null,
-    plus_one_name: el('rsvp-plus-one-name').value.trim() || null,
+    plus_one_confirmed: extraGuests.length > 0,
+    plus_one_name: extraGuests.length > 0 ? JSON.stringify(extraGuests) : null,
     phone: el('rsvp-phone').value.trim() || null,
     email: el('rsvp-email').value.trim() || null,
     arrival_day: el('rsvp-arrival').value || null,
     notes: el('rsvp-notes').value.trim() || null,
-    event_selections: getEventSelections(),
+    event_selections: {
+      ...getEventSelections(),
+      _shuttle_interest: shuttleVal === 'yes' ? true : shuttleVal === 'no' ? false : null,
+      _accommodation_type: getRadio('accommodation') || null,
+    },
   };
 
   try {
