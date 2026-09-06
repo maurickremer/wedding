@@ -29,7 +29,6 @@
       <div class="nav-links">
         <a href="#agenda" data-i18n="nav_agenda">Agenda</a>
         <a href="#info" data-i18n="nav_info">Info</a>
-        <a href="#accomm" data-i18n="nav_accomm">Alojamiento</a>
         <a href="#rsvp" data-i18n="nav_rsvp">RSVP</a>
         <a href="#faq" data-i18n="nav_faq">Preguntas</a>
       </div>
@@ -47,7 +46,6 @@
     <div id="mobile-menu" class="mobile-menu hidden">
       <a href="#agenda" data-i18n="nav_agenda">Agenda</a>
       <a href="#info" data-i18n="nav_info">Info</a>
-      <a href="#accomm" data-i18n="nav_accomm">Alojamiento</a>
       <a href="#rsvp" data-i18n="nav_rsvp">RSVP</a>
       <a href="#faq" data-i18n="nav_faq">Preguntas</a>
     </div>
@@ -121,6 +119,7 @@
         <button class="tab-btn" data-tab="altitude" data-i18n="info_tab_altitude">La altura</button>
         <button class="tab-btn" data-tab="packing" data-i18n="info_tab_packing">Qué traer</button>
         <button class="tab-btn" data-tab="dress" data-i18n="info_tab_dress">Vestimenta</button>
+        <button class="tab-btn" data-tab="accomm" data-i18n="info_tab_accomm">Alojamiento</button>
       </div>
 
       <!-- TRAVEL -->
@@ -330,16 +329,11 @@
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ===================== ACCOMMODATION ===================== -->
-  <section id="accomm" class="section">
-    <div class="container-narrow">
-      <div class="section-header">
-        <h2 data-i18n="accomm_title">Alojamiento</h2>
-        <p data-i18n="accomm_subtitle">Leadville es un pueblo pequeño — reservá cuanto antes</p>
-      </div>
+      <!-- ACCOMMODATION -->
+      <div id="tab-accomm" class="tab-panel">
+        <div class="info-section">
+          <h3 data-i18n="accomm_title">Alojamiento</h3>
+          <p data-i18n="accomm_subtitle">Leadville es un pueblo pequeño — reservá cuanto antes</p>
 
       <!-- HOTELS -->
       <div class="accomm-category">
@@ -440,13 +434,15 @@
           <span class="lang-es">🏠 <strong>¿Querés compartir una casa?</strong> Vamos a armar grupos con personas cercanas para quienes prefieran alquilar. Si te interesa, elegí la opción <em>"Casa grupal"</em> en tu RSVP y te contactamos para coordinar.</span>
           <span class="lang-en hidden">🏠 <strong>Want to share a house?</strong> We'll be putting together groups of close friends for those who prefer renting together. If that's you, select <em>"Group house"</em> in your RSVP and we'll reach out to coordinate.</span>
         </div>
+        </div>
+      </div>
       </div>
 
     </div>
   </section>
 
   <!-- ===================== RSVP ===================== -->
-  <section id="rsvp" class="section section-alt">
+  <section id="rsvp" class="section">
     <div class="container">
       <div class="section-header">
         <h2 data-i18n="rsvp_title">¿Venís?</h2>
@@ -624,7 +620,7 @@
   </section>
 
   <!-- ===================== FAQ ===================== -->
-  <section id="faq" class="section">
+  <section id="faq" class="section section-alt">
     <div class="container-narrow">
       <div class="section-header">
         <h2 data-i18n="faq_title">Preguntas frecuentes</h2>
