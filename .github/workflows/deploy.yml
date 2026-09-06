@@ -8,8 +8,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel deployment
-        run: |
-          curl -s -X POST \
-            "https://api.vercel.com/v1/integrations/deploy/prj_7K397Ys7Dj48JTabxXwLWx832DhH/pNKKovqOv9"
-          echo "Deployment triggered"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Deploy to Vercel
+        run: ./node_modules/.bin/vercel --prod --token "${{ secrets.VERCEL_TOKEN }}" --yes
+        env:
+          VERCEL_ORG_ID: team_IeAl6IU5SOx83ncOcR9VLidu
+          VERCEL_PROJECT_ID: prj_7K397Ys7Dj48JTabxXwLWx832DhH
