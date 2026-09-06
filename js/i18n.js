@@ -2,7 +2,6 @@ const LANG = {
   es: {
     nav_agenda: "Agenda",
     nav_info: "Info",
-    nav_accomm: "Alojamiento",
     nav_rsvp: "RSVP",
     nav_faq: "Preguntas",
 
@@ -28,6 +27,7 @@ const LANG = {
     info_tab_altitude: "La altura",
     info_tab_packing: "Qué traer",
     info_tab_dress: "Vestimenta",
+    info_tab_accomm: "Alojamiento",
 
     rsvp_title: "¿Venís?",
     rsvp_subtitle: "Confirmá tu asistencia antes del 15 de febrero de 2027",
@@ -93,7 +93,6 @@ const LANG = {
   en: {
     nav_agenda: "Schedule",
     nav_info: "Info",
-    nav_accomm: "Where to Stay",
     nav_rsvp: "RSVP",
     nav_faq: "FAQ",
 
@@ -119,6 +118,7 @@ const LANG = {
     info_tab_altitude: "The Altitude",
     info_tab_packing: "What to Pack",
     info_tab_dress: "Dress Code",
+    info_tab_accomm: "Accommodation",
 
     rsvp_title: "Are you coming?",
     rsvp_subtitle: "Please RSVP by February 15, 2027",
