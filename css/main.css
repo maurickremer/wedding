@@ -601,6 +601,141 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ========================
+   ACCOMMODATION
+   ======================== */
+.accomm-category { }
+.accomm-category + .accomm-category { margin-top: 3.5rem; }
+.accomm-category-header { margin-bottom: 1.5rem; }
+.accomm-eyebrow {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.accomm-category-intro {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 600px;
+}
+.accomm-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.accomm-cards-single {
+  grid-template-columns: 1fr;
+}
+.accomm-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.accomm-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.accomm-card-name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.accomm-badge {
+  flex-shrink: 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--sage);
+  color: var(--sage);
+  white-space: nowrap;
+  margin-top: 4px;
+}
+.accomm-badge-urgent {
+  background: #fff8ec;
+  border-color: var(--gold);
+  color: #7a5515;
+}
+.accomm-desc {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.accomm-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-alt);
+  border-radius: var(--radius-sm);
+}
+.accomm-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.accomm-detail-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.accomm-detail-value {
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.accomm-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.accomm-cta-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.accomm-contact {
+  display: inline-block;
+  font-size: 0.88rem;
+  color: var(--sage);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.accomm-contact:hover { opacity: 0.75; }
+.accomm-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.accomm-link:hover { color: var(--sage); }
+.accomm-phone { color: inherit; }
+
+@media (max-width: 600px) {
+  .accomm-cards { grid-template-columns: 1fr; }
+}
+
+/* ========================
    RSVP
    ======================== */
 .rsvp-center {
