@@ -532,12 +532,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-bottom: 1rem;
   letter-spacing: 0.02em;
 }
-.dress-examples {
+.dress-examples,
+.dress-gender-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
   margin-top: 1.25rem;
 }
+.dress-examples    { gap: 1rem; }
 .dress-example {
   background: var(--bg-alt);
   border-radius: var(--radius-sm);
@@ -556,12 +557,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text);
   line-height: 1.4;
 }
-.dress-gender-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.25rem;
-}
+.dress-gender-grid { gap: 1.5rem; }
 .dress-gender-block h4 {
   font-family: var(--font-serif);
   font-size: 1.1rem;
@@ -947,8 +943,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .radio-group { flex-direction: column; }
   .btn-submit { align-self: stretch; text-align: center; width: 100%; }
   .btn-edit { width: 100%; text-align: center; }
-  .dress-examples { grid-template-columns: 1fr; }
-  .dress-gender-grid { grid-template-columns: 1fr; }
+  .dress-examples, .dress-gender-grid { grid-template-columns: 1fr; }
   .dress-photos { grid-template-columns: 1fr; }
   .tab-btn { padding: 10px 12px; font-size: 0.65rem; }
   .tab-buttons {

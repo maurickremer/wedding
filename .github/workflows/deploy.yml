@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
       - name: Deploy to Vercel
-        run: npx vercel --prod --token "${{ secrets.VERCEL_TOKEN }}" --yes
+        run: ./node_modules/.bin/vercel --prod --token "${{ secrets.VERCEL_TOKEN }}" --yes
         env:
           VERCEL_ORG_ID: team_IeAl6IU5SOx83ncOcR9VLidu
           VERCEL_PROJECT_ID: prj_7K397Ys7Dj48JTabxXwLWx832DhH
