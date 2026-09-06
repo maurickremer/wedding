@@ -2,6 +2,7 @@ const LANG = {
   es: {
     nav_agenda: "Agenda",
     nav_info: "Info",
+    nav_accomm: "Alojamiento",
     nav_rsvp: "RSVP",
     nav_faq: "Preguntas",
 
@@ -18,6 +19,9 @@ const LANG = {
 
     day_names: ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo","Lunes"],
     month_name: "marzo",
+
+    accomm_title: "Alojamiento",
+    accomm_subtitle: "Leadville es un pueblo pequeño — reservá cuanto antes",
 
     info_title: "Info práctica",
     info_tab_travel: "Cómo llegar",
@@ -76,7 +80,7 @@ const LANG = {
 
     faq_title: "Preguntas frecuentes",
     faqs: [
-      { q: "¿Dónde me alojo en Leadville?", a: "Leadville es un pueblo pequeño con capacidad limitada. ¡Reservá cuanto antes! Hay opciones en el mismo Leadville y en pueblos cercanos como Frisco, Breckenridge o Twin Lakes. Pronto compartiremos recomendaciones de hoteles específicos. También existe la opción de sumarse a un grupo para alquilar un Airbnb (marcalo en tu RSVP si te interesa)." },
+      { q: "¿Dónde me alojo en Leadville?", a: "Mirá la sección <strong>Alojamiento</strong> en este sitio para todos los detalles. Negociamos precios especiales con Freight Hotel (cabañas en el predio de la boda) y Delaware Hotel. Si preferís una casa, vamos a armar grupos — indicalo en tu RSVP." },
       { q: "¿Necesito alquilar un auto?", a: "Sí, es muy recomendable. Leadville está a ~2 horas de Denver por la I-70 y no hay transporte público. Si van varios del mismo lugar, coordinen un auto compartido para reducir costos. También estamos viendo la posibilidad de un transfer grupal: si preferís no alquilar auto, marcalo en tu RSVP." },
       { q: "¿Qué pasa si me marea la altura? ¿Es peligroso?", a: "Leadville está a 3.094 msnm (10.152 ft), la ciudad más alta de los EE.UU. Es muy normal sentir cansancio, leve dolor de cabeza o sed el primer día. Recomendamos: llegar uno o dos días antes, hidratarse mucho (nada de alcohol el primer día), descansar, y tener ibuprofeno a mano. Si tenés condiciones cardíacas o respiratorias, consultá a tu médico antes del viaje." },
       { q: "¿Hay transporte organizado entre eventos?", a: "Sí, vamos a coordinar traslados entre los eventos principales de la semana. Más detalles próximamente." },
@@ -89,6 +93,7 @@ const LANG = {
   en: {
     nav_agenda: "Schedule",
     nav_info: "Info",
+    nav_accomm: "Where to Stay",
     nav_rsvp: "RSVP",
     nav_faq: "FAQ",
 
@@ -105,6 +110,9 @@ const LANG = {
 
     day_names: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday"],
     month_name: "March",
+
+    accomm_title: "Accommodation",
+    accomm_subtitle: "Leadville is a small mountain town — book as early as possible",
 
     info_title: "Practical Info",
     info_tab_travel: "Getting There",
@@ -163,7 +171,7 @@ const LANG = {
 
     faq_title: "FAQ",
     faqs: [
-      { q: "Where do I stay in Leadville?", a: "Leadville is a small mountain town with limited accommodation, so book early! Options in Leadville itself and nearby towns like Frisco, Breckenridge, or Twin Lakes. We'll share specific hotel recommendations soon. There's also the option to be grouped with other guests to rent an Airbnb together (let us know in your RSVP if you're interested)." },
+      { q: "Where do I stay in Leadville?", a: "Check the <strong>Accommodation</strong> section on this site for full details. We negotiated special rates at Freight Hotel (cabins right at the wedding venue) and the Delaware Hotel. If you'd prefer a house, we'll coordinate groups — just note it in your RSVP." },
       { q: "Do I need a rental car?", a: "Yes, strongly recommended. Leadville is ~2 hours from Denver on I-70 with no public transport. If several of you are coming from the same place, coordinate a carpool to save on costs. We're also looking into a group transfer option: if you'd prefer not to rent a car, note it in your RSVP." },
       { q: "What about altitude sickness?", a: "Leadville sits at 10,152 ft (3,094m), the highest city in the US. Mild fatigue, headaches, and thirst on day one are completely normal. Recommendations: arrive a day or two early, drink lots of water (avoid alcohol day one), rest, and keep ibuprofen handy. If you have heart or lung conditions, consult your doctor before traveling." },
       { q: "Is there organized transport between events?", a: "Yes, we'll be coordinating transfers between the main events of the week. More details to come closer to the date." },
