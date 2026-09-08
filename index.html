@@ -518,7 +518,7 @@
                 </div>
               </div>
 
-              <hr class="form-divider">
+              <hr class="form-divider" id="plus-one-divider">
 
               <!-- Extra guests (hidden until attending=yes) -->
               <div id="plus-one-section" class="hidden">
@@ -532,60 +532,65 @@
                 </div>
               </div>
 
-              <hr class="form-divider">
+              <hr class="form-divider" id="attendee-fields-divider">
 
-              <!-- Phone -->
-              <div class="form-group">
-                <label class="form-label" for="rsvp-phone" data-i18n="rsvp_phone_label">Celular</label>
-                <input id="rsvp-phone" class="form-input" type="tel" autocomplete="tel"
-                  data-i18n-ph="rsvp_phone_ph" placeholder="+54 11 xxxx-xxxx">
-              </div>
+              <!-- Fields only relevant if attending (hidden when "can't make it") -->
+              <div id="attendee-fields">
 
-              <!-- Email -->
-              <div class="form-group">
-                <label class="form-label" for="rsvp-email" data-i18n="rsvp_email_label">Email</label>
-                <input id="rsvp-email" class="form-input" type="email" autocomplete="email"
-                  data-i18n-ph="rsvp_email_ph" placeholder="vos@email.com">
-              </div>
-
-              <!-- Arrival day -->
-              <div class="form-group">
-                <label class="form-label" for="rsvp-arrival" data-i18n="rsvp_arrival_label">Llegada a Colorado</label>
-                <input id="rsvp-arrival" class="form-input" type="date" min="2027-03-20" max="2027-03-28">
-              </div>
-
-              <!-- Group Transfer -->
-              <div class="form-group">
-                <label class="form-label" data-i18n="rsvp_shuttle_label">¿Te interesa un transfer grupal privado? (sin necesidad de alquilar auto ni hacer carpool)</label>
-                <div class="radio-group">
-                  <label class="radio-opt" data-group="shuttle" data-value="yes">
-                    <input type="radio" name="shuttle" value="yes">
-                    <span data-i18n="rsvp_shuttle_yes">Sí, me interesa</span>
-                  </label>
-                  <label class="radio-opt" data-group="shuttle" data-value="no">
-                    <input type="radio" name="shuttle" value="no">
-                    <span data-i18n="rsvp_shuttle_no">No, gracias</span>
-                  </label>
+                <!-- Phone -->
+                <div class="form-group">
+                  <label class="form-label" for="rsvp-phone" data-i18n="rsvp_phone_label">Celular</label>
+                  <input id="rsvp-phone" class="form-input" type="tel" autocomplete="tel"
+                    data-i18n-ph="rsvp_phone_ph" placeholder="+54 11 xxxx-xxxx">
                 </div>
-              </div>
 
-              <!-- Accommodation -->
-              <div class="form-group">
-                <label class="form-label" data-i18n="rsvp_accomm_label">¿Qué tipo de alojamiento preferís?</label>
-                <div class="radio-group radio-group-col">
-                  <label class="radio-opt" data-group="accommodation" data-value="hotel">
-                    <input type="radio" name="accommodation" value="hotel">
-                    <span data-i18n="rsvp_accomm_hotel">🏨 Hotel individual (ver recomendaciones en el sitio)</span>
-                  </label>
-                  <label class="radio-opt" data-group="accommodation" data-value="group_house">
-                    <input type="radio" name="accommodation" value="group_house">
-                    <span data-i18n="rsvp_accomm_group">🏠 Casa grupal (los armaremos con personas cercanas)</span>
-                  </label>
-                  <label class="radio-opt" data-group="accommodation" data-value="either">
-                    <input type="radio" name="accommodation" value="either">
-                    <span data-i18n="rsvp_accomm_either">🤷 Cualquiera de las dos</span>
-                  </label>
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="form-label" for="rsvp-email" data-i18n="rsvp_email_label">Email</label>
+                  <input id="rsvp-email" class="form-input" type="email" autocomplete="email"
+                    data-i18n-ph="rsvp_email_ph" placeholder="vos@email.com">
                 </div>
+
+                <!-- Arrival day -->
+                <div class="form-group">
+                  <label class="form-label" for="rsvp-arrival" data-i18n="rsvp_arrival_label">Llegada a Colorado</label>
+                  <input id="rsvp-arrival" class="form-input" type="date" min="2027-03-20" max="2027-03-28">
+                </div>
+
+                <!-- Group Transfer -->
+                <div class="form-group">
+                  <label class="form-label" data-i18n="rsvp_shuttle_label">¿Te interesa un transfer grupal privado? (sin necesidad de alquilar auto ni hacer carpool)</label>
+                  <div class="radio-group">
+                    <label class="radio-opt" data-group="shuttle" data-value="yes">
+                      <input type="radio" name="shuttle" value="yes">
+                      <span data-i18n="rsvp_shuttle_yes">Sí, me interesa</span>
+                    </label>
+                    <label class="radio-opt" data-group="shuttle" data-value="no">
+                      <input type="radio" name="shuttle" value="no">
+                      <span data-i18n="rsvp_shuttle_no">No, gracias</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Accommodation -->
+                <div class="form-group">
+                  <label class="form-label" data-i18n="rsvp_accomm_label">¿Qué tipo de alojamiento preferís?</label>
+                  <div class="radio-group radio-group-col">
+                    <label class="radio-opt" data-group="accommodation" data-value="hotel">
+                      <input type="radio" name="accommodation" value="hotel">
+                      <span data-i18n="rsvp_accomm_hotel">🏨 Hotel individual (ver recomendaciones en el sitio)</span>
+                    </label>
+                    <label class="radio-opt" data-group="accommodation" data-value="group_house">
+                      <input type="radio" name="accommodation" value="group_house">
+                      <span data-i18n="rsvp_accomm_group">🏠 Casa grupal (los armaremos con personas cercanas)</span>
+                    </label>
+                    <label class="radio-opt" data-group="accommodation" data-value="either">
+                      <input type="radio" name="accommodation" value="either">
+                      <span data-i18n="rsvp_accomm_either">🤷 Cualquiera de las dos</span>
+                    </label>
+                  </div>
+                </div>
+
               </div>
 
               <!-- Notes -->
