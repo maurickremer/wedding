@@ -176,8 +176,12 @@ function initRadios() {
       btn.querySelector('input').checked = true;
 
       if (group === 'attending') {
-        el('plus-one-section').classList.toggle('hidden', btn.dataset.value !== 'yes');
-        if (btn.dataset.value !== 'yes') clearExtraGuests();
+        const isYes = btn.dataset.value === 'yes';
+        el('plus-one-section').classList.toggle('hidden', !isYes);
+        el('plus-one-divider').classList.toggle('hidden', !isYes);
+        el('attendee-fields').classList.toggle('hidden', !isYes);
+        el('attendee-fields-divider').classList.toggle('hidden', !isYes);
+        if (!isYes) clearExtraGuests();
         updateStep1ButtonLabel();
       }
     });
