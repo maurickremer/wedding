@@ -183,8 +183,18 @@ function initRadios() {
         el('attendee-fields-divider').classList.toggle('hidden', !isYes);
         if (!isYes) clearExtraGuests();
         updateStep1ButtonLabel();
+        // Save attendance immediately so it's not lost if the guest abandons
+        // the form before finishing steps 2/3.
+        if (isYes) saveAttendingInBackground();
       }
     });
+  });
+}
+
+function saveAttendingInBackground() {
+  if (!guestToken) return;
+  dbUpdate(guestToken, { is_attending: true }).catch(err => {
+    console.error('Background attending save failed:', err);
   });
 }
 
