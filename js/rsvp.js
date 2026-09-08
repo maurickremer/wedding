@@ -178,6 +178,7 @@ function initRadios() {
       if (group === 'attending') {
         el('plus-one-section').classList.toggle('hidden', btn.dataset.value !== 'yes');
         if (btn.dataset.value !== 'yes') clearExtraGuests();
+        updateStep1ButtonLabel();
       }
     });
   });
@@ -205,6 +206,14 @@ function setRadio(group, value) {
 function getRadio(group) {
   const selected = document.querySelector(`.radio-opt[data-group="${group}"].selected`);
   return selected ? selected.dataset.value : null;
+}
+
+// Step 1's button submits directly when "can't attend" is selected (no steps 2/3),
+// so its label needs to say "Confirm" instead of "Next" or guests won't click it.
+function updateStep1ButtonLabel() {
+  const btn = el('step-next-1');
+  if (!btn) return;
+  btn.textContent = getRadio('attending') === 'no' ? t('rsvp_submit') : t('rsvp_next');
 }
 
 // ========================
@@ -485,6 +494,8 @@ function updateRsvpLang() {
   }
   const label = el('step-label');
   if (label) label.textContent = t('rsvp_step_of').replace('{n}', currentStep);
+
+  updateStep1ButtonLabel();
 
   // Re-render event cards if steps 2 or 3 are visible
   const step2 = el('step-2');
