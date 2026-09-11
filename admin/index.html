@@ -189,6 +189,7 @@
     .stat-card.pending .stat-num { color: var(--amber); }
     .stat-card.sent .stat-num { color: var(--blue); }
     .stat-label { font-size: 12px; color: var(--text-soft); margin-top: 4px; }
+    .stat-sub { font-size: 11px; color: var(--gray); margin-top: 2px; }
 
     /* ===== ADD PANEL ===== */
     .add-panel {
@@ -479,10 +480,12 @@
       <div class="stat-card confirmed" onclick="setFilterById('confirmed')" title="Ver confirmados">
         <div class="stat-num" id="stat-confirmed">—</div>
         <div class="stat-label">✅ Confirmados</div>
+        <div class="stat-sub" id="stat-confirmed-people"></div>
       </div>
       <div class="stat-card declined" onclick="setFilterById('declined')" title="Ver que no van">
         <div class="stat-num" id="stat-declined">—</div>
         <div class="stat-label">❌ No van</div>
+        <div class="stat-sub" id="stat-declined-people"></div>
       </div>
       <div class="stat-card pending" onclick="setFilterById('pending')" title="Ver sin respuesta">
         <div class="stat-num" id="stat-pending">—</div>
@@ -665,15 +668,37 @@
   }
 
   // ===== STATS =====
+  // Rough headcount: "&" in the name means the invitation is for 2 people
+  // (e.g. "Alex & Adam"), plus anyone added via the RSVP's "+ Agregar persona".
+  // Not 100% accurate (a guest can double-count if they add a plus-one who's
+  // already implied by the "&" name), but good enough for a quick estimate.
+  function estimatePartySize(g) {
+    const base = g.name.includes('&') ? 2 : 1;
+    let extra = 0;
+    if (g.plus_one_name) {
+      try {
+        const arr = JSON.parse(g.plus_one_name);
+        extra = Array.isArray(arr) ? arr.length : 1;
+      } catch { extra = 1; }
+    }
+    return base + extra;
+  }
+
   function updateStats() {
-    document.getElementById('stat-confirmed').textContent =
-      guests.filter(g => g.is_attending === true).length;
-    document.getElementById('stat-declined').textContent =
-      guests.filter(g => g.is_attending === false).length;
+    const confirmed = guests.filter(g => g.is_attending === true);
+    const declined = guests.filter(g => g.is_attending === false);
+
+    document.getElementById('stat-confirmed').textContent = confirmed.length;
+    document.getElementById('stat-declined').textContent = declined.length;
     document.getElementById('stat-pending').textContent =
       guests.filter(g => g.is_attending === null).length;
     document.getElementById('stat-sent').textContent =
       guests.filter(g => g.link_sent_at).length;
+
+    const confirmedPeople = confirmed.reduce((sum, g) => sum + estimatePartySize(g), 0);
+    const declinedPeople = declined.reduce((sum, g) => sum + estimatePartySize(g), 0);
+    document.getElementById('stat-confirmed-people').textContent = `≈ ${confirmedPeople} personas`;
+    document.getElementById('stat-declined-people').textContent = `≈ ${declinedPeople} personas`;
   }
 
   // ===== FILTER =====
